@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\TestController;
+use Illuminate\Http\Request;
 use Illuminate\Routing\RouteBinding;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Http\Request;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\ContactController;
 
 
 Route::get('/', [TestController::class, 'index'])->name('home');
 Route::get('about', [TestController::class, 'about'])->name('about');
-Route::get('contact', [TestController::class, 'contact'])->name('contact');
-Route::post('contact', [TestController::class, 'store'])->name('contact.store');
+
+Route::get('contact', [ContactController::class, 'index'])->name('contact');
+Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::view('bl' , 'welcome');
 
@@ -36,4 +38,3 @@ Route::get('secret' , function(Request $request ){
     }
     return "This is a secret message";
 })->name('secret');
-
