@@ -7,10 +7,13 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\ContactController;
 
 
-Route::get('/', [TestController::class, 'index'])->name('home');
-Route::get('about', [TestController::class, 'about'])->name('about');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('about', [AboutController::class, 'index'])->name('about');
 
-Route::get('contact', [ContactController::class, 'index'])->name('contact');
+Route::get('contact', [ContactController::class, 'index'])
+    ->middleware('check_age')
+    ->name('contact');
+
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 Route::view('bl' , 'welcome');
